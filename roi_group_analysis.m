@@ -18,8 +18,7 @@ end
 subj_list = [1 2 3 4 5 6 7 8 9 10 13 14 15 16 17 18 19 20 21 22 23 24];
 rois = ["BA44", "BA45", "BA47", "BA44+45", "BA44+45+47"];
 nNulls_per_subject = 500;
-%nIter = 10000 % number of iterations of creating a null group decoding accuracy, to generate a group null distribution of accuracies
-nIter = 1000;
+nIter = 100000 % number of iterations of creating a null group decoding accuracy, to generate a group null distribution of accuracies
 nSubjects = numel(subj_list);
 for roi = rois
     if ~isfile(['/Volumes/data1/Complex_seq_analysis/ROIs_group_results/' char(roi) '/' char(roi) '_group_accuracy.mat'])
