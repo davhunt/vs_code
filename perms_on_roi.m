@@ -1,5 +1,15 @@
 function [] = perms_on_roi()
 
+if exist('/N/slate/brainevo/Implicit_Learning/CoSMoMVPA/mvpa') == 7 % slate
+    base_folder = '/N/slate/brainevo/Implicit_Learning';
+    addpath(genpath('/N/slate/brainevo/Implicit_Learning/CoSMoMVPA/mvpa'));
+    addpath(genpath('/N/slate/brainevo/Implicit_Learning/matlab_nifti_tools'));
+else
+    base_folder = '/Volumes/data1';
+    addpath(genpath('/Users/lab/Downloads/CoSMoMVPA/mvpa')); % habilis
+    addpath(genpath('/Users/lab/Downloads/matlab_nifti_tools'));
+end
+
 % something like this to generate perms for specific ROIs
 % BA44, BA45, BA47, BA44+45, BA44+45+47
 base_folder = '/Volumes/data1';
