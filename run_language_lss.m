@@ -23,14 +23,14 @@ function run_language_lss(spreadsheetFile, sheetName, subjID, windowTag, ...
 %
 % EXPECTED SPREADSHEET COLUMNS
 %   subject
-%   BlockOrder
-%   Trial
+%   scanner_sequence_number
+%   trial
 %   sentence_ID
+%   pair_number_alphabetical
 %   grammar_type
 %   grammaticality
 %   <windowTag>_onset
 %   <windowTag>_duration
-%.  pair_number_alphabetical
 %
 % NOTES
 %.  - 'windowTag' determines the column to get onsets and durations from, determines what is considered
@@ -63,12 +63,8 @@ function run_language_lss(spreadsheetFile, sheetName, subjID, windowTag, ...
     % Read the Excel spreadsheet
     T = readtable(spreadsheetFile, "Sheet", sheetName);
 
-    %requiredCols = ["subject","block","trial","sentence_ID","grammarType","grammaticality", ...
-    %                windowTag + "_onset", windowTag + "_duration"];
-    %requiredCols = ["Subject","Block","Trial","SentenceType","grammarType","Grammaticality", ...
-    %                "TrialOnset", "TrialDuration"];
-    requiredCols = ["subject","BlockOrder","Trial","sentence_ID","grammar_type","grammaticality", ...
-                    windowTag + "_onset_seconds",windowTag + "_duration_seconds","pair_number_alphabetical"];
+    requiredCols = ["subject","scanner_sequence_number","trial","sentence_ID","pair_number_alphabetical","grammar_type","grammaticality", ...
+                    windowTag + "_onset",windowTag + "_duration"];
 
     missingCols = setdiff(requiredCols, string(T.Properties.VariableNames));
     if ~isempty(missingCols)
@@ -79,14 +75,9 @@ function run_language_lss(spreadsheetFile, sheetName, subjID, windowTag, ...
     T.sentence_ID  = string(T.sentence_ID);
     T.grammar_type    = string(T.grammar_type);
     T.grammaticality = string(T.grammaticality);
-
-    % Extract pair_id from the first two digits of sentence_ID.
-    % Example: 07AUG -> 7
-    %T.pair_id = arrayfun(@(s) sscanf(char(s), '%2d'), T.sentence_ID, 'UniformOutput', false);
-    % never mind just take from "pair_number_alphabetical"
     T.pair_id = string(T.pair_number_alphabetical);
-    onsetVar = windowTag + "_onset_seconds";
-    durVar   = windowTag + "_duration_seconds";
+    onsetVar = windowTag + "_onset";
+    durVar   = windowTag + "_duration";
 
     subjString = sprintf("%02d", str2num(subjID)); % later filepaths require two digit subject IDs
     T = T(T.subject == subjID, :);
@@ -95,7 +86,7 @@ function run_language_lss(spreadsheetFile, sheetName, subjID, windowTag, ...
     end
 
     % Group by block
-    blocks = unique(T.BlockOrder, 'stable');
+    blocks = unique(T.scanner_sequence_number, 'stable');
     nBlocks = numel(blocks);
 
     VY       = cell(1, nBlocks);
@@ -112,8 +103,8 @@ function run_language_lss(spreadsheetFile, sheetName, subjID, windowTag, ...
     % Build run/block-wise LSS inputs
     betaCounter = 0;
     for b = 1:nBlocks
-        blockID = blocks(b); % Should be equivalent, just 1 through 4 (taken from BlockOrder)
-        Tb = T(T.BlockOrder == blockID, :);
+        blockID = blocks(b);
+        Tb = T(T.scanner_sequence_number == blockID, :);
 
         % Sort by onset because least_squares_separate names betas in onset order within each run/block.
         % So beta orders will not match up with row order in Excel file but that's ok
@@ -123,8 +114,8 @@ function run_language_lss(spreadsheetFile, sheetName, subjID, windowTag, ...
 
         % Load the preprocessed fMRI volumes for this block.
         % The LSS code wants VY as the spm_vol output. For multiple runs, VY is a cell array with one entry per run/block.
-        VY_files{b} = char(sprintf(runNiftiPattern, subjString, blockID)); % blockX_merged.nii.gz
-        VY{b} = spm_vol(char(sprintf(runNiftiPattern, subjString, blockID)));
+        VY_files{b} = char(sprintf(runNiftiPattern, subjString, b)); % blockX_merged.nii.gz
+        VY{b} = spm_vol(char(sprintf(runNiftiPattern, subjString, b)));
 
         % grand mean scale (each) run to 100
         g = zeros(numel(VY{b}),1);
@@ -158,8 +149,8 @@ function run_language_lss(spreadsheetFile, sheetName, subjID, windowTag, ...
 
         tmpMeta = table();
         tmpMeta.subject         = repmat(Tb.subject(1), nTrials, 1);
-        tmpMeta.block           = repmat(Tb.BlockOrder(1), nTrials, 1);
-        tmpMeta.trial           = Tb.Trial;
+        tmpMeta.block           = repmat(Tb.scanner_sequence_number(1), nTrials, 1);
+        tmpMeta.trial           = Tb.trial;
         tmpMeta.pair_id         = Tb.pair_id;
         tmpMeta.sentence_ID   = Tb.sentence_ID;
         tmpMeta.grammar_type    = Tb.grammar_type;
