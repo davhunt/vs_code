@@ -1,4 +1,4 @@
-function [] = display_cluster_stats_and_write_out_clusters(sigclusters_img, outdir, cluster_threshold, group_acc)
+function [] = display_cluster_stats_and_write_out_clusters(sigclusters_img, outdir, cluster_threshold, group_acc, write_cluster_files)
 
 % Report extent, centroid, peak voxel coordinates (MNI), peak decoding % for each cluster in significant voxels mask (i.e. p<0.001 mask)
 
@@ -69,10 +69,11 @@ for i = 1:length(cluster_ids)
             img(voxels(1,j),voxels(2,j),voxels(3,j)) = 1;
         end
         temp_nii.img = img;
-        %save_untouch_nii(temp_nii,fullfile(outdir,['cluster' num2str(n) '.nii.gz']));
         n = n+1;
         %save_untouch_nii(temp_nii,fullfile(outdir,['cluster_' num2str(i) '_' char(ROI_name) '.nii.gz']));
-        save_untouch_nii(temp_nii,fullfile(outdir,['cluster_' char(ROI_name) '_' num2str(size(voxels,2)) 'vox.nii.gz']));
+        if write_cluster_files
+            save_untouch_nii(temp_nii,fullfile(outdir,['cluster_' char(ROI_name) '_' num2str(size(voxels,2)) 'vox.nii.gz']));
+        end
     end
 end
 
