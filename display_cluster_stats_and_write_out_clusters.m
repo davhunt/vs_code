@@ -2,8 +2,8 @@ function [] = display_cluster_stats_and_write_out_clusters(sigclusters_img, outd
 
 % Report extent, centroid, peak voxel coordinates (MNI), peak decoding % for each cluster in significant voxels mask (i.e. p<0.001 mask)
 
-addpath(genpath('/Users/lab/Downloads/matlab_nifti_tools'));
-addpath(genpath('/Users/lab/Downloads/spm12'));
+addpath(genpath('/Users/brainevo/Downloads/matlab_nifti_tools'));
+addpath(genpath('/Users/brainevo/Downloads/spm12'));
 
 V = spm_vol(sigclusters_img);
 Y = spm_read_vols(V);
@@ -18,13 +18,13 @@ end
 group_accuracy_vol = spm_vol(group_acc);
 group_accuracy_img = spm_read_vols(group_accuracy_vol);
 
-%AAL_atlas = spm_vol('/Users/lab/Downloads/aal116/aal116MNI.nii.gz'); % old atlas version
+%AAL_atlas = spm_vol('/Users/brainevo/Downloads/aal116/aal116MNI.nii.gz'); % old atlas version
 %AAL_atlas_img = spm_read_vols(AAL_atlas);
-%AAL_indices = load('/Users/lab/Downloads/aal116/aal116NodeIndex.1D');
-%AAL_names = readlines('/Users/lab/Downloads/aal116/aal116NodeNames.txt');
-AAL_atlas = spm_vol('/Users/lab/Downloads/AAL3/AAL3v1.nii.gz');
+%AAL_indices = load('/Users/brainevo/Downloads/aal116/aal116NodeIndex.1D');
+%AAL_names = readlines('/Users/brainevo/Downloads/aal116/aal116NodeNames.txt');
+AAL_atlas = spm_vol('/Users/brainevo/Downloads/AAL3/AAL3v1.nii.gz');
 AAL_atlas_img = spm_read_vols(AAL_atlas);
-AAL_labels = readlines('/Users/lab/Downloads/AAL3/AAL3v1.nii.txt');
+AAL_labels = readlines('/Users/brainevo/Downloads/AAL3/AAL3v1.nii.txt');
 AAL_indices = []; AAL_names = []; % AAL_indices: 170x1 double, AAL_names: 170x1 string array
 for i = 1:size(AAL_labels,1)
     line = split(AAL_labels(i),' ');

@@ -3,7 +3,7 @@ function [] = run_t_test_for_cluster(cluster_name)
 % This function runs a paired t-test for a given cluster, to compare high associative chunk strength trials with low associative chunk strength trials,
 % providing a check on if grammatical and ungrammatical sequences were truly balanced in terms of chunk strength (subsequence familiarity).
 
-addpath(genpath('/Users/lab/Downloads/matlab_nifti_tools')); % On Habilis
+addpath(genpath('/Users/brainevo/Downloads/matlab_nifti_tools')); % On Habilis
 
 subj_list = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24"];
 

@@ -1,7 +1,7 @@
 function [design] = run_glmsingle(subj)
 
-    addpath(genpath('/Users/lab/Downloads/GLMsingle/matlab'));
-    addpath(genpath('/Users/lab/Downloads/matlab_nifti_tools'));
+    addpath(genpath('/Users/brainevo/Downloads/GLMsingle/matlab'));
+    addpath(genpath('/Users/brainevo/Downloads/matlab_nifti_tools'));
 
     bold_nii = load_untouch_nii(['/Volumes/data1/T1_and_Complex_seq/0' num2str(subj, '%02d') '/func_cat.nii.gz']);
     data{1} = single(bold_nii.img);  % just one run, wants single-precision

@@ -1,7 +1,7 @@
 function [] = extract_and_write_clusters_from_mask(sigclusters_img, outdir)
 
-addpath(genpath('/Users/lab/Downloads/matlab_nifti_tools'));
-addpath(genpath('/Users/lab/Downloads/spm12'))
+addpath(genpath('/Users/brainevo/Downloads/matlab_nifti_tools'));
+addpath(genpath('/Users/brainevo/Downloads/spm12'))
 
 vol = spm_vol(sigclusters_img);
 dat = spm_read_vols(vol);

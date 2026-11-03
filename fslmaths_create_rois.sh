@@ -9,7 +9,7 @@ subj=$(printf "%02d" $subj)
 #out_file=$3
 
 #atlas_epi_space=/Volumes/data1/Complex_seq_analysis/0${subj}/MVPA/durations_unsmoothed_native/aal116_epi_space.nii.gz
-atlas_epi_space=/Users/lab/Downloads/ants_registrations/${subj}/aal116_in_epi_6to2009c.nii.gz
+atlas_epi_space=/Users/brainevo/Downloads/ants_registrations/${subj}/aal116_in_epi_6to2009c.nii.gz
 
 #brocas_dir=/Volumes/data1/Complex_seq_analysis/0${subj}/MVPA/durations_unsmoothed_native/brocas_rois
 brocas_dir=/Volumes/data1/Complex_seq_analysis/0${subj}/MVPA/breakpoint_rts_unsmoothed_native_antsmask/brocas_rois

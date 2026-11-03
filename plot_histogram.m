@@ -1,7 +1,7 @@
 function [] = plot_histogram(nifti_durations, nifti_onsets, nperms)
 
 % nbins should be number of permutations plus 1
-addpath(genpath('/Users/lab/Downloads/matlab_nifti_tools'));
+addpath(genpath('/Users/brainevo/Downloads/matlab_nifti_tools'));
 
 onsets_nii = load_untouch_nii(nifti_onsets);
 durations_nii = load_untouch_nii(nifti_durations);

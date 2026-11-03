@@ -27,7 +27,7 @@ fi
 #something like:
 #fslmaths /Volumes/data1/Complex_seq_analysis/018/MVPA/onsets_only_unsmoothed/TDT_results/pvals_map_post_permutation_onsets_thr0.05_two.nii -add /Volumes/data1/Complex_seq_analysis/018/MVPA/durations_unsmoothed/TDT_results/pvals_map_post_permutation_durs_thr0.05_bin.nii /Volumes/data1/Complex_seq_analysis/018/MVPA/onsets_only_unsmoothed/TDT_results/pvals_map_post_permutation_combined_1fordurations_2foronsets_3forboth.nii
 
-#freeview -v /Volumes/data1/Complex_seq_analysis/018/MVPA/onsets_only_unsmoothed/TDT_results/pvals_map_post_permutation_combined_1fordurations_2foronsets_3forboth.nii:colormap=heat /Users/lab/Downloads/aal116/aal116MNI.nii.gz:opacity=0.4:colormap=lut:lut=/Users/lab/Downloads/aal116/outLUT.txt /Users/lab/Downloads/leaddbs/templates/space/MNI152NLin2009bAsym/t1.nii:opacity=0.4
+#freeview -v /Volumes/data1/Complex_seq_analysis/018/MVPA/onsets_only_unsmoothed/TDT_results/pvals_map_post_permutation_combined_1fordurations_2foronsets_3forboth.nii:colormap=heat /Users/brainevo/Downloads/aal116/aal116MNI.nii.gz:opacity=0.4:colormap=lut:lut=/Users/brainevo/Downloads/aal116/outLUT.txt /Users/brainevo/Downloads/leaddbs/templates/space/MNI152NLin2009bAsym/t1.nii:opacity=0.4
 
 
 

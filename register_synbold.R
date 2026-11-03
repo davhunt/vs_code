@@ -9,6 +9,6 @@ for (sub in subs) {
     fixed <- paste0("/Volumes/data1/T1_and_Complex_seq/0", sub, "/", structurals[1]) # Again take first structural scan, non-NORM one
     fixed <- antsImageRead(fixed)
     reg <- antsRegistration(fixed = fixed, moving = moving, typeofTransform = "SyNBold") # SyNBold
-    file.copy(reg$fwdtransforms, c(paste0("/Users/lab/Downloads/ants_registrations/", sub, "/synbold/epi_to_t1_0GenericAffine.mat"), paste0("/Users/lab/Downloads/ants_registrations/", sub, "/synbold/epi_to_t1_1Warp.nii.gz")))
-    file.copy(reg$invtransforms, c(paste0("/Users/lab/Downloads/ants_registrations/", sub, "/synbold/invwarp_t1_to_epi_0GenericAffine.mat"), paste0("/Users/lab/Downloads/ants_registrations/", sub, "/synbold/invwarp_t1_to_epi_1InverseWarp.nii.gz")))
+    file.copy(reg$fwdtransforms, c(paste0("/Users/brainevo/Downloads/ants_registrations/", sub, "/synbold/epi_to_t1_0GenericAffine.mat"), paste0("/Users/brainevo/Downloads/ants_registrations/", sub, "/synbold/epi_to_t1_1Warp.nii.gz")))
+    file.copy(reg$invtransforms, c(paste0("/Users/brainevo/Downloads/ants_registrations/", sub, "/synbold/invwarp_t1_to_epi_0GenericAffine.mat"), paste0("/Users/brainevo/Downloads/ants_registrations/", sub, "/synbold/invwarp_t1_to_epi_1InverseWarp.nii.gz")))
 }

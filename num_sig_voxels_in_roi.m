@@ -3,7 +3,7 @@ function [] = num_sig_voxels_in_roi(sub, space, threshold, roi)
 % roi should be ROI # (or array of ROI #s) from AAL116NodeIndex.1D and aal116NodeNames.txt
 
 % nbins should be number of permutations plus 1
-addpath(genpath('/Users/lab/Downloads/matlab_nifti_tools'));
+addpath(genpath('/Users/brainevo/Downloads/matlab_nifti_tools'));
 
 sub = num2str(sub, '%02d');
 

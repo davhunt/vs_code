@@ -11,9 +11,9 @@ mni_template="$FSLDIR/data/standard/MNI152_T1_2mm.nii.gz"
 #t1_to_mni_affine="/N/slate/brainevo/Implicit_Learning/ants_mni_registrations/${subj}/t1_to_mni_0GenericAffine.mat"
 #epi_to_t1_affine="/N/slate/brainevo/Implicit_Learning/ants_mni_registrations/${subj}/epi_to_t1_0GenericAffine.mat"
 
-t1_to_mni_warp="/Users/lab/Downloads/ants_registrations/${subj}/t1_to_mni_1Warp.nii.gz"
-t1_to_mni_affine="/Users/lab/Downloads/ants_registrations/${subj}/t1_to_mni_0GenericAffine.mat"
-epi_to_t1_affine="/Users/lab/Downloads/ants_registrations/${subj}/epi_to_t1_0GenericAffine.mat"
+t1_to_mni_warp="/Users/brainevo/Downloads/ants_registrations/${subj}/t1_to_mni_1Warp.nii.gz"
+t1_to_mni_affine="/Users/brainevo/Downloads/ants_registrations/${subj}/t1_to_mni_0GenericAffine.mat"
+epi_to_t1_affine="/Users/brainevo/Downloads/ants_registrations/${subj}/epi_to_t1_0GenericAffine.mat"
 
 
 #echo "applying transform to all permutation accuracy above chance maps for subject ${subj}"

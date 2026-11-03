@@ -8,7 +8,7 @@ function [] = num_sig_voxels_in_roi_compare(sub, space, threshold, roi)
 % num_sig_voxels_in_roi_compare(sub,'native',7,[2301 2302 2311 2312])
 % sub 08: onsets radius 4 13.871%, onsets radius 3 15.914%, durations radius 4 17.903%, durations radius 3 19.946%.
 
-addpath(genpath('/Users/lab/Downloads/matlab_nifti_tools'));
+addpath(genpath('/Users/brainevo/Downloads/matlab_nifti_tools'));
 
 sub = num2str(sub, '%02d');
 
