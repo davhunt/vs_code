@@ -1,4 +1,4 @@
-function [] = rename_sr_betas()
+function [] = rename_sr_betas(window_type)
 
 % Rename sentence reading beta filenames after names of trials
 
@@ -10,17 +10,17 @@ non_trial_betas = ["R1_1", "R2_1", "R3_1", "R4_1", "R5_1", "R6_1", "R1_2", "R2_2
 non_trial_betas_indices = [50:55, 105:110, 160:165, 215:224];
 
 for subjID = subj_list
-    %cd(sprintf('/Volumes/data1/Implicit_Learning/sentence_reading_betas/%02d', double(subjID)));
-    load(sprintf('/Volumes/data1/Implicit_Learning/sentence_reading_betas/%02d/SPM.mat', double(subjID)));
+    %cd(sprintf('/Volumes/data1/Implicit_Learning/sentence_reading_betas/%02d/%s', double(subjID), window_type));
+    load(sprintf('/Volumes/data1/Implicit_Learning/sentence_reading_betas/%02d/%s/SPM.mat', double(subjID), window_type));
     for beta=[1:49,56:104,111:159,166:214]
-        beta_filename = sprintf('/Volumes/data1/Implicit_Learning/sentence_reading_betas/%02d/beta_%04d.nii', double(subjID), beta);
+        beta_filename = sprintf('/Volumes/data1/Implicit_Learning/sentence_reading_betas/%02d/%s/beta_%04d.nii', double(subjID), window_type, beta);
         trial_name = regexp(char(SPM.xX.name(beta)), '^Sn.*([0-9]{2}[ACGOPRU]+).*$','tokens');
-        beta_new_filename = sprintf('/Volumes/data1/Implicit_Learning/sentence_reading_betas/%02d/beta_%s.nii', double(subjID), char(trial_name{1}));
+        beta_new_filename = sprintf('/Volumes/data1/Implicit_Learning/sentence_reading_betas/%02d/%s/beta_%s.nii', double(subjID), window_type, char(trial_name{1}));
         movefile(beta_filename, beta_new_filename);
     end
     for beta=1:numel(non_trial_betas)
-        beta_filename = sprintf('/Volumes/data1/Implicit_Learning/sentence_reading_betas/%02d/beta_%04d.nii', double(subjID), non_trial_betas_indices(beta));
-        beta_new_filename = sprintf('/Volumes/data1/Implicit_Learning/sentence_reading_betas/%02d/beta_%s.nii', double(subjID), non_trial_betas(beta));
+        beta_filename = sprintf('/Volumes/data1/Implicit_Learning/sentence_reading_betas/%02d/%s/beta_%04d.nii', double(subjID), window_type, non_trial_betas_indices(beta));
+        beta_new_filename = sprintf('/Volumes/data1/Implicit_Learning/sentence_reading_betas/%02d/%s/beta_%s.nii', double(subjID), window_type, non_trial_betas(beta));
         movefile(beta_filename, beta_new_filename);
     end
 end
